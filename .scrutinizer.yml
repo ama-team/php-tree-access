@@ -1,0 +1,17 @@
+build:
+  environment:
+    php: 7.1
+    elasticsearch: true
+  tests:
+    before:
+      - bin/codecept build
+    override:
+      - command: bin/codecept run --coverage --coverage-xml --coverage-html
+        coverage:
+          file: tests/Report/coverage.xml
+          format: php-clover
+checks:
+  php: true
+filter:
+  paths:
+    - src/*

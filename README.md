@@ -1,8 +1,9 @@
-# WIP note
-
-This is a work-in-progress project, it is not ready yet
-
 # AmaTeam\TreeAccess
+
+[![Packagist](https://img.shields.io/packagist/v/ama-team/tree-access.svg?style=flat-square)](https://packagist.org/packages/ama-team/tree-access)
+[![CircleCI/master](https://img.shields.io/circleci/project/github/ama-team/php-tree-access/master.svg?style=flat-square)](https://circleci.com/gh/ama-team/php-tree-access/tree/master)
+[![Coveralls/master](https://img.shields.io/coveralls/github/ama-team/php-tree-access/master.svg?style=flat-square)](https://coveralls.io/github/ama-team/php-tree-access?branch=master)
+[![Scrutinizer/master](https://img.shields.io/scrutinizer/g/ama-team/php-tree-access/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/ama-team/php-tree-access?branch=master)
 
 This tiny project allows to read, enumerate and write properties / 
 elements in a nested tree consisting of arrays and objects.
@@ -50,3 +51,17 @@ node).
 
 As of 0.1.x, possible performance optimizations are sacrificed for 
 simplicity.
+
+## Contributing
+
+Feel free to send PR to **dev** branch
+
+## Dev branch state
+
+[![CircleCI/dev](https://img.shields.io/circleci/project/github/ama-team/php-tree-access/dev.svg?style=flat-square)](https://circleci.com/gh/ama-team/php-tree-access/tree/dev)
+[![Coveralls/dev](https://img.shields.io/coveralls/github/ama-team/php-tree-access/dev.svg?style=flat-square)](https://coveralls.io/github/ama-team/php-tree-access?branch=dev)
+[![Scrutinizer/dev](https://img.shields.io/scrutinizer/g/ama-team/php-tree-access/dev.svg?style=flat-square)](https://scrutinizer-ci.com/g/ama-team/php-tree-access?branch=dev)
+
+## Licensing
+
+MIT License / AMA Team, 2018

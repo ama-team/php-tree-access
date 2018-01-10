@@ -28,6 +28,8 @@ class Node implements NodeInterface
      * @param mixed $value
      * @param bool $readable
      * @param bool $writable
+     *
+     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
      */
     public function __construct(
         array $path,

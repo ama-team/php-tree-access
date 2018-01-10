@@ -35,6 +35,9 @@ class ObjectAccessor implements TypeAccessorInterface
      * @param object $object
      * @param string $property
      * @return NodeInterface
+     *
+     * @SuppressWarnings(PHPMD.ElseExpression)
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      */
     public function read(&$object, $property)
     {
@@ -44,7 +47,7 @@ class ObjectAccessor implements TypeAccessorInterface
         $native = $metadata && !$metadata->isVirtual();
         if ($standard || $native) {
             $value = $object->$property;
-        } else if ($metadata && $metadata->getGetter() !== null) {
+        } elseif ($metadata && $metadata->getGetter() !== null) {
             $getter = $metadata->getGetter();
             $value = $getter ? call_user_func([$object, $getter]) : null;
         } else {
@@ -72,14 +75,13 @@ class ObjectAccessor implements TypeAccessorInterface
         if ($standard || $native) {
             $object->$property = $value;
             return new Node([$property], $value);
-        } else if ($metadata && $metadata->getSetter() !== null) {
+        } elseif ($metadata && $metadata->getSetter() !== null) {
             call_user_func([$object, $metadata->getSetter()], $value);
             return new Node([$property], $value);
-        } else {
-            $template = 'Can\'t access property `%s` on target of class `%s`';
-            $message = sprintf($template, $property, get_class($object));
-            throw new IllegalTargetException([$property], $message);
         }
+        $template = 'Can\'t access property `%s` on target of class `%s`';
+        $message = sprintf($template, $property, get_class($object));
+        throw new IllegalTargetException([$property], $message);
     }
 
     /**
