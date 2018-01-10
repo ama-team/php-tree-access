@@ -1,0 +1,35 @@
+{
+  "name": "ama-team/tree-access",
+  "description": "Symfony-Property-Access-like tree manipulation helper",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "AMA Team",
+      "email": "dev@amagroup.ru"
+    },
+    {
+      "name": "Etki",
+      "email": "etki@etki.me"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "AmaTeam\\TreeAccess\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "AmaTeam\\TreeAccess\\Test\\": "tests/"
+    }
+  },
+  "config": {
+    "bin-dir": "bin"
+  },
+  "require": {
+    "psr/simple-cache": "^1.0",
+    "allure-framework/allure-codeception": "^1.2"
+  },
+  "require-dev": {
+    "codeception/codeception": "^2.3"
+  }
+}

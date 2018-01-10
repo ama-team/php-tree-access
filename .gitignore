@@ -1,0 +1,10 @@
+# IDE files
+/.idea
+
+# Composer artifacts
+/composer.lock
+/vendor
+/bin
+
+# Playground
+/tmp
