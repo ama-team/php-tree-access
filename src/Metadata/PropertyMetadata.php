@@ -28,6 +28,8 @@ class PropertyMetadata implements PropertyMetadataInterface
      * @param bool $virtual
      * @param null|string $setter
      * @param null|string $getter
+     *
+     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
      */
     public function __construct(
         $name,

@@ -10,7 +10,7 @@ use Codeception\Test\Unit;
 use PHPUnit\Framework\Assert;
 use stdClass;
 
-class EnumerationTest extends Unit
+class NodesEnumerationTest extends Unit
 {
     public function dataProvider()
     {
@@ -37,7 +37,7 @@ class EnumerationTest extends Unit
     public function testEnumeration($structure, $path, $expectation)
     {
         $accessor = TreeAccess::createAccessorBuilder()->build();
-        $nodes = $accessor->enumerate($structure, $path);
+        $nodes = $accessor->enumerateNodes($structure, $path);
         $methods = ['getValue', 'getPath', 'isWritable', 'isReadable'];
         /**
          * @var string $name
