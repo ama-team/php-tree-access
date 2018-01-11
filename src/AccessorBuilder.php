@@ -5,6 +5,9 @@ namespace AmaTeam\TreeAccess;
 use AmaTeam\TreeAccess\API\Metadata\StorageInterface;
 use AmaTeam\TreeAccess\Metadata\Manager;
 use AmaTeam\TreeAccess\Metadata\RuntimeStorage;
+use AmaTeam\TreeAccess\Type\ArrayAccessor;
+use AmaTeam\TreeAccess\Type\ObjectAccessor;
+use AmaTeam\TreeAccess\Type\Registry;
 
 class AccessorBuilder
 {
@@ -27,6 +30,9 @@ class AccessorBuilder
     {
         $storage = $this->metadataStorage ?: new RuntimeStorage();
         $manager = new Manager($storage);
-        return new Accessor($manager);
+        $registry = (new Registry())
+            ->registerAccessor('array', new ArrayAccessor())
+            ->registerAccessor('object', new ObjectAccessor($manager));
+        return new Accessor($registry);
     }
 }

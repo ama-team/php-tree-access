@@ -4,6 +4,7 @@ namespace AmaTeam\TreeAccess\Type;
 
 use AmaTeam\TreeAccess\API\Exception\IllegalTargetException;
 use AmaTeam\TreeAccess\API\Exception\RuntimeException;
+use AmaTeam\TreeAccess\API\Metadata\PropertyMetadataInterface;
 use AmaTeam\TreeAccess\API\TypeAccessorInterface;
 use AmaTeam\TreeAccess\API\Exception\MissingNodeException;
 use AmaTeam\TreeAccess\API\Metadata\ManagerInterface;
@@ -46,7 +47,7 @@ class ObjectAccessor implements TypeAccessorInterface
         $standard = $object instanceof stdClass;
         $native = $metadata && !$metadata->isVirtual();
         if ($standard || $native) {
-            $value = $object->$property;
+            $value = &$object->$property;
         } elseif ($metadata && $metadata->getGetter() !== null) {
             $getter = $metadata->getGetter();
             $value = $getter ? call_user_func([$object, $getter]) : null;
@@ -104,18 +105,30 @@ class ObjectAccessor implements TypeAccessorInterface
         $this->assertObject($item);
         $properties = $this->metadataManger->get(get_class($item));
         $target = [];
-        foreach (array_keys($properties) as $name) {
+        $names = array_keys($properties);
+        foreach (array_keys(get_object_vars($item)) as $name) {
+            $names[] = $name;
+        }
+        foreach (array_unique($names) as $name) {
             $target[$name] = $this->read($item, $name);
         }
         return $target;
     }
 
+    /**
+     * @param object $object
+     * @param string $property
+     * @return PropertyMetadataInterface|null
+     */
     private function findPropertyMetadata($object, $property)
     {
         $properties = $this->metadataManger->get(get_class($object));
         return isset($properties[$property]) ? $properties[$property] : null;
     }
 
+    /**
+     * @param mixed $item
+     */
     private function assertObject($item)
     {
         if (!is_object($item)) {
@@ -125,6 +138,10 @@ class ObjectAccessor implements TypeAccessorInterface
         }
     }
 
+    /**
+     * @param object $item
+     * @param string $property
+     */
     private function assertExists($item, $property)
     {
         if (!$this->exists($item, $property)) {

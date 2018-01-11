@@ -3,9 +3,34 @@
 namespace AmaTeam\TreeAccess\API;
 
 use AmaTeam\TreeAccess\API\Exception\IllegalTargetException;
+use AmaTeam\TreeAccess\API\Exception\MissingNodeException;
 
 interface AccessorInterface
 {
+    /**
+     * Returns node for specified path.
+     *
+     * @param mixed $root
+     * @param string|string[] $path
+     *
+     * @return NodeInterface
+     *
+     * @throws IllegalTargetException
+     * @throws MissingNodeException
+     */
+    public function getNode(&$root, $path);
+
+    /**
+     * Tries to find node with specified path and returns null if that
+     * is not possible.
+     *
+     * @param mixed $root
+     * @param string|string[] $path
+     *
+     * @return NodeInterface|null
+     */
+    public function findNode(&$root, $path);
+
     /**
      * Reads value at specified path.
      *
@@ -14,17 +39,19 @@ interface AccessorInterface
      * @return mixed
      *
      * @throws IllegalTargetException
+     * @throws MissingNodeException
      */
     public function read(&$root, $path);
 
     /**
-     * Returns specified node children as [key => value] array.
+     * Returns children of node at specified path.
      *
      * @param mixed $root
      * @param string|string[] $path
-     * @return array
+     * @return NodeInterface[]
      *
      * @throws IllegalTargetException
+     * @throws MissingNodeException
      */
     public function enumerate(&$root, $path);
 
@@ -37,6 +64,7 @@ interface AccessorInterface
      * @return void
      *
      * @throws IllegalTargetException
+     * @throws MissingNodeException
      */
     public function write(&$root, $path, $value);
 
