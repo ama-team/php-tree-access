@@ -2,8 +2,6 @@
 
 namespace AmaTeam\TreeAccess;
 
-use AmaTeam\TreeAccess\API\AccessorInterface;
-
 class TreeAccess
 {
     /**
@@ -15,7 +13,7 @@ class TreeAccess
     }
 
     /**
-     * @return AccessorInterface
+     * @return Accessor
      */
     public static function createAccessor()
     {

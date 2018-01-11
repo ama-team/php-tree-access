@@ -40,6 +40,10 @@ class Manager implements ManagerInterface
         return $properties;
     }
 
+    /**
+     * @param string $className
+     * @return PropertyMetadata[]
+     */
     private function analyze($className)
     {
         $reflection = new ReflectionClass($className);
@@ -49,6 +53,10 @@ class Manager implements ManagerInterface
         );
     }
 
+    /**
+     * @param ReflectionClass $reflection
+     * @return PropertyMetadata[]
+     */
     private function extractProperties(ReflectionClass $reflection)
     {
         $properties = [];
@@ -60,6 +68,10 @@ class Manager implements ManagerInterface
         return $properties;
     }
 
+    /**
+     * @param ReflectionClass $reflection
+     * @return PropertyMetadata[]
+     */
     private function extractVirtualProperties(ReflectionClass $reflection)
     {
         $properties = [];

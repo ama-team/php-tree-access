@@ -37,7 +37,7 @@ class NodesEnumerationTest extends Unit
     public function testEnumeration($structure, $path, $expectation)
     {
         $accessor = TreeAccess::createAccessorBuilder()->build();
-        $nodes = $accessor->enumerateNodes($structure, $path);
+        $nodes = $accessor->enumerate($structure, $path);
         $methods = ['getValue', 'getPath', 'isWritable', 'isReadable'];
         /**
          * @var string $name

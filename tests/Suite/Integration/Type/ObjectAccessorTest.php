@@ -153,11 +153,14 @@ class ObjectAccessorTest extends Unit
         foreach ($values as $name => $value) {
             $payload->$name = $value;
         }
+        /** @var NodeInterface[] $children */
+        $children = $this->accessor->enumerate($payload);
+        Assert::assertEquals(2, sizeof($children));
         /**
          * @var string $name
          * @var NodeInterface $node
          */
-        foreach ($this->accessor->enumerate($payload) as $name => $node) {
+        foreach ($children as $name => $node) {
             Assert::assertEquals([$name], $node->getPath());
             Assert::assertEquals($values[$name], $node->getValue());
             Assert::assertTrue($node->isReadable());

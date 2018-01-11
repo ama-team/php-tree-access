@@ -31,8 +31,8 @@ interface TypeAccessorInterface
     public function write(&$item, $key, $value);
 
     /**
-     * @param $item
-     * @param $key
+     * @param mixed $item
+     * @param string $key
      *
      * @return bool
      *

@@ -9,12 +9,12 @@ class MissingNodeException extends IllegalTargetException
 {
     /**
      * @param string[] $path
-     * @param null $message
+     * @param string|null $message
      * @param Throwable|null $previous
      */
     public function __construct(array $path, $message = null, Throwable $previous = null)
     {
-        if (!$message) {
+        if ($message === null) {
             $template = 'Node at requested path `%s` doesn\'t exist';
             $message = sprintf($template, Paths::toString($path));
         }

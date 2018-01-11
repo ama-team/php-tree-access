@@ -52,6 +52,14 @@ class Node implements NodeInterface
     }
 
     /**
+     * @inheritDoc
+     */
+    public function getKey()
+    {
+        return empty($this->path) ? null : $this->path[sizeof($this->path) - 1];
+    }
+
+    /**
      * @return mixed
      */
     public function &getValue()
@@ -73,5 +81,20 @@ class Node implements NodeInterface
     public function isWritable()
     {
         return $this->writable;
+    }
+
+    /**
+     * @param NodeInterface $node
+     * @param string[] $path
+     * @return Node
+     */
+    public static function withPath(NodeInterface $node, array $path)
+    {
+        return new Node(
+            $path,
+            $node->getValue(),
+            $node->isReadable(),
+            $node->isWritable()
+        );
     }
 }

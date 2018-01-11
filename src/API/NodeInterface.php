@@ -10,6 +10,11 @@ interface NodeInterface
     public function getPath();
 
     /**
+     * @return string|null
+     */
+    public function getKey();
+
+    /**
      * Returns null if is not readable
      *
      * @return mixed
