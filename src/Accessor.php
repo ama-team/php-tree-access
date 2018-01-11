@@ -47,6 +47,39 @@ class Accessor implements AccessorInterface, ActiveNodeFactoryInterface
     }
 
     /**
+     * @inheritDoc
+     */
+    public function exists($root, $path)
+    {
+        $normalizedPath = Paths::normalize($path);
+        return $this->findNode($root, $normalizedPath) !== null;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function isReadable($root, $path)
+    {
+        return $this->getNode($root, $path)->isReadable();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function isWritable($root, $path)
+    {
+        return $this->getNode($root, $path)->isWritable();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function isEnumerable($root, $path)
+    {
+        return $this->getNode($root, $path)->isEnumerable();
+    }
+
+    /**
      * @param mixed $root
      * @param string|string[] $path
      * @param Context $context
@@ -101,15 +134,6 @@ class Accessor implements AccessorInterface, ActiveNodeFactoryInterface
         $parentValue = &$parent->getValue();
         $node = $accessor->write($parentValue, $key, $value);
         return Node::withPath($node, $normalizedPath);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function exists($root, $path)
-    {
-        $normalizedPath = Paths::normalize($path);
-        return $this->findNode($root, $normalizedPath) !== null;
     }
 
     /**

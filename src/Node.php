@@ -84,6 +84,14 @@ class Node implements NodeInterface
     }
 
     /**
+     * @inheritDoc
+     */
+    public function isEnumerable()
+    {
+        return is_array($this->value) || is_object($this->value);
+    }
+
+    /**
      * @param NodeInterface $node
      * @param string[] $path
      * @return Node

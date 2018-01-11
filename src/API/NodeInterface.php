@@ -32,4 +32,9 @@ interface NodeInterface
      * @return bool
      */
     public function isWritable();
+
+    /**
+     * @return bool
+     */
+    public function isEnumerable();
 }

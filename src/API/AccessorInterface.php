@@ -33,6 +33,35 @@ interface AccessorInterface
     public function findNode(&$root, $path);
 
     /**
+     * Tells if specified node exists.
+     *
+     * @param mixed $root
+     * @param string|string[] $path
+     * @return bool
+     */
+    public function exists($root, $path);
+
+    /**
+     * @param mixed $root
+     * @param string|string[] $path
+     * @return bool
+     */
+    public function isReadable($root, $path);
+    /**
+     * @param mixed $root
+     * @param string|string[] $path
+     * @return bool
+     */
+    public function isWritable($root, $path);
+
+    /**
+     * @param mixed $root
+     * @param string|string[] $path
+     * @return bool
+     */
+    public function isEnumerable($root, $path);
+
+    /**
      * Reads value at specified path.
      *
      * @param mixed $root
@@ -68,13 +97,4 @@ interface AccessorInterface
      * @throws MissingNodeException
      */
     public function write(&$root, $path, $value);
-
-    /**
-     * Tells if specified node exists.
-     *
-     * @param mixed $root
-     * @param string|string[] $path
-     * @return bool
-     */
-    public function exists($root, $path);
 }
