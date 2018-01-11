@@ -8,7 +8,8 @@ use AmaTeam\TreeAccess\API\Exception\MissingNodeException;
 interface AccessorInterface
 {
     /**
-     * Returns node for specified path.
+     * Returns node for specified path, or throws an error if such
+     * node doesn't exist.
      *
      * @param mixed $root
      * @param string|string[] $path
@@ -61,7 +62,7 @@ interface AccessorInterface
      * @param mixed $root
      * @param string|string[] $path
      * @param mixed $value
-     * @return void
+     * @return NodeInterface
      *
      * @throws IllegalTargetException
      * @throws MissingNodeException

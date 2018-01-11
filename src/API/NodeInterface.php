@@ -5,18 +5,20 @@ namespace AmaTeam\TreeAccess\API;
 interface NodeInterface
 {
     /**
+     * Node path relative to root. Equals to empty array for root.
+     *
      * @return string[]
      */
     public function getPath();
 
     /**
-     * @return string|null
+     * Node name as a child of parent node.
+     *
+     * @return string|int|null
      */
     public function getKey();
 
     /**
-     * Returns null if is not readable
-     *
      * @return mixed
      */
     public function &getValue();
