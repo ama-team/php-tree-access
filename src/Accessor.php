@@ -92,14 +92,15 @@ class Accessor implements AccessorInterface, ActiveNodeFactoryInterface
         $normalizedPath = Paths::normalize($path);
         if (empty($normalizedPath)) {
             $root = $value;
-            return;
+            return new Node([], $root);
         }
         $key = $normalizedPath[sizeof($normalizedPath) - 1];
         $parentPath = array_slice($normalizedPath, 0, -1);
         $parent = $this->getNode($root, $parentPath);
         $accessor = $this->getAccessor($parent->getValue(), $parentPath);
         $parentValue = &$parent->getValue();
-        $accessor->write($parentValue, $key, $value);
+        $node = $accessor->write($parentValue, $key, $value);
+        return Node::withPath($node, $normalizedPath);
     }
 
     /**

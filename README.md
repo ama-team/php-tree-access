@@ -47,10 +47,32 @@ Setters / getters support is already bundled in, and accessing missing
 nodes will throw an exception (except when setting leaf of existing
 node).
 
+### ActiveNode
+
+Accessor already provides additional method that allows alternative
+manipulation interface:
+
+```php
+<?php
+
+$object = new stdClass();
+$object->values = ['apples' => 'green'];
+$root = [$object];
+
+$accessor = AmaTeam\TreeAccess\TreeAccess::createAccessor();
+
+$activeNode = $accessor->wrap($object);
+foreach ($activeNode->enumerate() as $child) {
+    $child->getChild('values')->setChild('lemon', 'yellow');
+    $child->setChild('processed', true);
+}
+```
+
 ## Performance
 
 As of 0.1.x, possible performance optimizations are sacrificed for 
-simplicity.
+ease of use. This library doesn't promote performance (at least for now)
+at all.
 
 ## Contributing
 

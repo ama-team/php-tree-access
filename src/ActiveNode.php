@@ -56,14 +56,14 @@ class ActiveNode extends Node implements ActiveNodeInterface
     /**
      * @inheritDoc
      */
-    public function setChild($key, &$value)
+    public function setChild($key, $value)
     {
         $this->accessor->write($this->getValue(), [$key], $value);
         $node = $this->accessor->getNode($this->getValue(), [$key]);
         return new ActiveNode(
             $this->accessor,
             array_merge($this->getPath(), [$key]),
-            $value,
+            $node->getValue(),
             $node->isReadable(),
             $node->isWritable(),
             $this
@@ -84,6 +84,14 @@ class ActiveNode extends Node implements ActiveNodeInterface
             $node->isWritable(),
             $this
         );
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getParent()
+    {
+        return $this->parent;
     }
 
     /**
